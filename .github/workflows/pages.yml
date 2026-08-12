@@ -1,0 +1,47 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Deploy the built site to GitHub Pages.
+#
+# ONE-TIME SETUP (required): in the repo, go to
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
+# After that, every push to main publishes to https://<user>.github.io/<repo>/.
+# Before that setting is enabled, this workflow's deploy step will fail with
+# "Get Pages site failed" — that is expected and does not affect the `build` CI.
+name: pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Generate + build the site
+        run: |
+          python _meta/generate.py
+          python _meta/build_site.py
+          touch site/.nojekyll
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4

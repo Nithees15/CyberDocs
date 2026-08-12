@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
-# CI: generate the docs, fail on broken links, build the interactive site, and
-# (on main) deploy it to GitHub Pages. Pages is auto-enabled by the build job,
-# so no manual "Settings -> Pages" step is required.
+# CI: generate the docs (fails on any broken internal link) and build the
+# interactive site. This is the real health signal for the repo and does NOT
+# depend on GitHub Pages — see pages.yml for deployment.
 name: build
 
 on:
@@ -11,55 +11,18 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write        # needed to auto-enable Pages
-      id-token: write
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
-      # Verify the build on every push and PR (this is the real CI signal).
       - name: Generate Markdown (fails on broken links)
         run: python _meta/generate.py
-
       - name: Build the interactive site
         run: python _meta/build_site.py
-
-      # --- Pages packaging (main only) ---
-      - name: Configure Pages (auto-enable if needed)
-        if: github.ref == 'refs/heads/main'
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
-
-      - name: Add .nojekyll
-        if: github.ref == 'refs/heads/main'
-        run: touch site/.nojekyll
-
-      - name: Upload Pages artifact
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
-
-  deploy:
-    # Publish to GitHub Pages on pushes to main.
-    if: github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
