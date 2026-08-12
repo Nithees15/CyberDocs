@@ -1489,7 +1489,7 @@ def main():
     problems = validate_links()
     print(f"Generated: {n_ch} chapters, {n_tools} tools, {n_plat} platforms, "
           f"{n_proj} projects, {n_cheat} cheatsheets, {n_boss} boss labs.")
-    print(f"Authored practice labs: {len(PRACTICE)} · part environments: {n_env}")
+    print(f"Authored practice labs: {len(PRACTICE)} | part environments: {n_env}")
     print(f"Total study hours: {total_hours}")
     if problems:
         print(f"\n!! {len(problems)} broken internal links:")
