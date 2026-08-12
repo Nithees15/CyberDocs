@@ -1180,35 +1180,58 @@ def generate_root():
     # README.md (repo landing)
     r = []
     r.append("# Cybersecurity-Mastery\n")
-    r.append("> An offline cybersecurity encyclopedia, university curriculum, practical lab manual, "
-             "certification study guide and professional reference — combined into one cross-referenced, "
-             "Unity-documentation-style repository.\n")
-    r.append(f"**{len(SECTIONS)} sections · {total_ch} chapters · {len(BOSS)} boss labs · {len(TOOLS)} tools · "
-             f"{len(PLATFORMS)} learning-platform roadmaps · {len(PROJECTS)} projects · "
-             f"{len(CHEATSHEETS)} cheatsheets.**\n")
-    r.append("> **An interactive, hands-on learning app — not a textbook.** ~75% doing, ~25% theory. Each "
-             "lesson is a short **Overview** then a big **Hands-On Practice**: a lab-setup card, a step-by-step "
-             "walkthrough where every command has a **▸ Run** and **📋 Copy** button, a live terminal, instant "
-             "quizzes, and a detect-and-defend section. With the optional **Lab Runner** (`labserver/`) the Run "
-             "buttons and terminal *actually execute* inside a Kali container on your isolated lab network.\n")
-    r.append("## How to use this repository\n")
-    r.append("- **Open the app** — `site/index.html` in a browser (dark by default; toggle the theme). Your "
-             "lesson progress is saved in the browser.\n"
-             "- **Run commands for real (optional)** — start the Lab Runner: `python labserver/server.py`, then in "
-             "any lesson click **Connect lab runner** in the Live Terminal card and paste the token. Now **▸ Run** "
-             "executes in your Kali container. Without it, everything still works via **📋 Copy**.\n"
-             "- **Each track has a one-time lab environment** — the top of every track page has a `docker compose` "
-             "setup (also saved to `labs/environments/`); **▸ Start lab** brings it up.\n"
-             "- **Follow the campaign** — [labs/README.md](labs/README.md) orders every lab by track and ends each "
-             "with a cross-topic **boss lab** (full kill-chain).\n"
-             "- **Practise safely** — every target is local and isolated (CyberForge + Kali + bWAPP/DVWA/"
-             "Juice-Shop/Metasploitable/GOAD/LocalStack). Never test systems you do not own.\n")
-    r.append("## Your progress\n")
-    all_keys = ",".join(f"{s['id']}/{slug}.html" for s in SECTIONS for slug, *_ in s["chapters"])
-    r.append('<div class="track-progress">'
-             f'<div class="progress" data-track-progress data-lessons="{all_keys}"><i></i></div>'
-             '<div class="tp-label" style="color:var(--muted);font-size:13px;margin-top:6px">'
-             'Lessons completed (saved in your browser)</div></div>\n')
+    r.append('<p align="center"><em>Learn security by <strong>doing</strong> it — an offline, interactive, '
+             f'hands-on learning app that turns {total_ch} lessons across {len(SECTIONS)} tracks into runnable '
+             'labs, not walls of text.</em></p>\n')
+    r.append('<p align="center">\n'
+             '  <a href="LICENSE"><img alt="License: GPL v3" src="https://img.shields.io/badge/license-GPLv3-2ea043.svg"></a>\n'
+             '  <a href="https://github.com/Nithees15/CyberDocs/actions/workflows/build.yml"><img alt="Build" src="https://github.com/Nithees15/CyberDocs/actions/workflows/build.yml/badge.svg"></a>\n'
+             '  <a href="https://nithees15.github.io/CyberDocs/"><img alt="Live site" src="https://img.shields.io/badge/live-GitHub%20Pages-2ea043"></a>\n'
+             f'  <img alt="{total_ch} lessons" src="https://img.shields.io/badge/lessons-{total_ch}-2ea043">\n'
+             '  <img alt="~75% hands-on" src="https://img.shields.io/badge/hands--on-~75%25-2ea043">\n'
+             '  <img alt="Works offline" src="https://img.shields.io/badge/works-offline-2ea043">\n'
+             '</p>\n')
+    r.append("**Cybersecurity-Mastery** is a self-contained security learning app you run on your own machine. "
+             "Instead of *reading about* attacks and defences, you **perform** them: each lesson opens with a "
+             "short, plain-English **Overview**, then hands you a full **lab** — provision an isolated target, "
+             "follow a step-by-step walkthrough where **every command has a Run and a Copy button**, watch the "
+             "real output, take an instant quiz, and finish with a *detect-and-defend* debrief. Theory is about a "
+             "quarter of each page; the rest is doing.\n")
+    r.append("**▶ Live site:** <https://nithees15.github.io/CyberDocs/> &nbsp;·&nbsp; "
+             "**Run locally:** `python _meta/build_site.py`, then open `site/index.html`.\n")
+    r.append(f"> **{len(SECTIONS)} tracks · {total_ch} lessons · {len(BOSS)} boss labs · {len(TOOLS)} tool guides "
+             f"· {len(PROJECTS)} projects · {len(CHEATSHEETS)} cheatsheets · GPL-3.0.**\n")
+    r.append("---\n")
+    r.append("## Why it's different\n")
+    r.append("- **Hands-on first (~75/25).** The centre of gravity of every lesson is a lab, not prose — short "
+             "theory, then you build.\n"
+             "- **The commands actually run.** With the optional **Lab Runner** (`labserver/`), **▸ Run** and the "
+             "**Live Terminal** execute each command *inside an isolated Kali container* (`docker exec`) — never "
+             "on your host. No backend running? Everything still works via **📋 Copy**.\n"
+             "- **Everything is local and isolated.** Targets are intentionally-vulnerable apps — bWAPP, DVWA, "
+             "OWASP Juice Shop, Metasploitable, GOAD, LocalStack — on fail-closed networks. Nothing here touches "
+             "systems you don't own.\n"
+             "- **Structured like a course.** 16 tracks, a one-command lab environment per track, saved progress "
+             "and quizzes, and cross-topic **boss labs** — full kill-chains that chain many lessons together.\n"
+             "- **One source of truth.** The entire site is produced by a small, data-driven generator in "
+             "[`_meta/`](_meta/README.md): no dead links, no duplication, fully reproducible.\n")
+    r.append("## Quick start\n")
+    r.append("**1. Open the app.** No server, no build tools, works offline:\n")
+    r.append("```bash\n"
+             "git clone https://github.com/Nithees15/CyberDocs.git\n"
+             "# then open site/index.html in your browser  (or run: python _meta/build_site.py to rebuild it)\n"
+             "```\n")
+    r.append("Prefer to read on GitHub? Start from [SUMMARY.md](SUMMARY.md) or jump straight into a track below.\n")
+    r.append("**2. Run commands for real (optional).** Start the Lab Runner, then connect the site to it:\n")
+    r.append("```bash\n"
+             "python labserver/server.py     # binds to 127.0.0.1 and prints a one-time session token\n"
+             "```\n")
+    r.append("In any lesson, click **Connect lab runner** in the Live Terminal card and paste the token — now "
+             "**▸ Run** executes inside your Kali container, and **▸ Start lab** brings up that track's targets "
+             "(compose files live in [`labs/environments/`](labs/environments/)). Everything stays on isolated, "
+             "fail-closed networks. See [labserver/README.md](labserver/README.md).\n")
+    r.append("**3. Follow the campaign.** [labs/README.md](labs/README.md) orders every lab by track and caps each "
+             "with a cross-topic **boss lab** — a full kill-chain that combines many lessons.\n")
     r.append("## Tracks\n")
     r.append("| # | Track | Lessons | Focus |")
     r.append("| --- | --- | --- | --- |")
@@ -1218,6 +1241,18 @@ def generate_root():
         r.append(f"| {num} | [{section['title']}](manual/{sid}/README.md) | {len(section['chapters'])} | "
                  f"{section['desc'].split('.')[0]}. |")
     r.append("")
+    r.append("## Repository layout\n")
+    r.append("```\n"
+             "CyberDocs/\n"
+             "├─ manual/        the 16 tracks and their lessons (the content)\n"
+             "├─ labs/          the campaign, boss labs, and per-track environments/\n"
+             "├─ reference/     tool guides, learning-platform roadmaps, glossary, ATT&CK/CWE/RFC indexes\n"
+             "├─ projects/      graded, hands-on builds\n"
+             "├─ cheatsheets/   printable quick-references\n"
+             "├─ labserver/     the local Lab Runner — live in-browser command execution\n"
+             "├─ _meta/         the data-driven generator  (edit here, then regenerate)\n"
+             "└─ site/          the built app  (generated; open site/index.html)\n"
+             "```\n")
     r.append("## The Reference\n")
     r.append("- [Tools](reference/tools/README.md) — every major security tool, documented end to end "
              f"({len(TOOLS)} tools)\n"
