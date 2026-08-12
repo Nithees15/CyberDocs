@@ -1,0 +1,7 @@
+{
+  "host": "127.0.0.1",
+  "port": 8777,
+  "container": "kali",
+  "shell": "bash",
+  "timeout_seconds": 180
+}

@@ -1,0 +1,33 @@
+# Generated web UI — built locally with `python _meta/build_site.py` and by CI
+# (GitHub Actions) for Pages, so it is not committed.
+/site/
+
+# mdBook output (if you use mdBook)
+/book/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Lab Runner local secrets
+labserver/.labtoken
+
+# Local env / logs
+.env
+*.log
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
+# Private working notes (suggestions, plans) — keep local, never publish
+/_suggestions/

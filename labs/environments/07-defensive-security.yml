@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# blue-lab/docker-compose.yml  —  Defensive part environment
+# Wazuh ships an official single-node compose. Pull it and bring it up:
+#   git clone https://github.com/wazuh/wazuh-docker -b v4.x
+#   cd wazuh-docker/single-node && docker compose up -d
+# Then add a target that generates events:
+services:
+  victim:
+    image: ubuntu:22.04
+    container_name: blue-victim
+    command: sleep infinity
+    networks: [labnet]
+  # (install the Wazuh agent in 'victim', or run Sysmon on a Windows VM,
+  #  then run Atomic Red Team tests to generate detections.)
+
+networks:
+  labnet:
+    driver: bridge

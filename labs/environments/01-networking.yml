@@ -1,0 +1,15 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# net-lab/docker-compose.yml  —  Networking part environment
+services:
+  metasploitable:
+    image: tleemcjr/metasploitable2
+    container_name: net-target
+    networks: [labnet]
+    # intentionally vulnerable services; keep it OFF any routed network
+    command: /bin/sh -c "/etc/rc.local; tail -f /dev/null"
+
+networks:
+  labnet:
+    driver: bridge
+    internal: true          # no route to host/internet — fail closed

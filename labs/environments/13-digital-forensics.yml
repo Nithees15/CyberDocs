@@ -1,0 +1,16 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# dfir-lab/docker-compose.yml  —  Forensics part environment
+services:
+  dfir-box:
+    image: sk4la/plaso                    # plaso + timeline tooling; or build a custom SIFT-like image
+    container_name: dfir-box
+    command: sleep infinity
+    volumes:
+      - ./evidence:/evidence:ro           # drop disk/memory images here (read-only)
+    networks: [labnet]
+
+networks:
+  labnet:
+    driver: bridge
+    internal: true

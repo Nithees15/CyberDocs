@@ -1,0 +1,23 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# vuln-lab/docker-compose.yml  —  Vulnerabilities part environment
+services:
+  bwapp:
+    image: raesene/bwapp
+    ports: ["8081:80"]
+    networks: [labnet]
+  dvwa:
+    image: vulnerables/web-dvwa
+    ports: ["8082:80"]
+    networks: [labnet]
+  pwn-box:
+    image: ubuntu:22.04
+    container_name: pwn-box
+    cap_add: ["SYS_PTRACE"]          # allow gdb inside the container
+    security_opt: ["seccomp=unconfined"]
+    command: sleep infinity
+    networks: [labnet]
+
+networks:
+  labnet:
+    driver: bridge

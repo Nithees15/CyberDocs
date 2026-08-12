@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# cloud-lab/docker-compose.yml  —  Cloud Security part environment
+services:
+  localstack:
+    image: localstack/localstack
+    ports: ["4566:4566"]
+    environment:
+      - SERVICES=iam,s3,ec2,lambda,sts,logs
+    networks: [labnet]
+
+networks:
+  labnet:
+    driver: bridge

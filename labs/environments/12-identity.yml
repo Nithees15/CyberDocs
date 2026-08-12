@@ -1,0 +1,18 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# id-lab/docker-compose.yml  —  Identity part environment
+services:
+  samba-ad:
+    image: nowsci/samba-domain            # or diladele/samba-ad-dc
+    environment:
+      - DOMAIN=LAB.LOCAL
+      - DOMAINPASS=Passw0rd!Passw0rd!
+      - HOSTIP=172.20.0.10
+    networks:
+      labnet: { ipv4_address: 172.20.0.10 }
+    cap_add: ["SYS_ADMIN"]
+
+networks:
+  labnet:
+    driver: bridge
+    ipam: { config: [{ subnet: 172.20.0.0/24 }] }

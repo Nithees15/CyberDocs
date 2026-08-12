@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Nithees Narendra S
+# web-lab/docker-compose.yml  —  Web Security part environment
+services:
+  bwapp:
+    image: raesene/bwapp
+    ports: ["8081:80"]
+    networks: [labnet]
+  dvwa:
+    image: vulnerables/web-dvwa
+    ports: ["8082:80"]
+    networks: [labnet]
+  juice-shop:
+    image: bkimminich/juice-shop
+    ports: ["8083:3000"]
+    networks: [labnet]
+  webgoat:
+    image: webgoat/webgoat
+    ports: ["8084:8080"]
+    networks: [labnet]
+
+networks:
+  labnet:
+    driver: bridge
+    # routed here so your browser/Burp on the host can reach the apps;
+    # for a jeopardy-style setup put the attacker box on labnet and set internal: true

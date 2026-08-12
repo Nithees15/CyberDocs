@@ -1,0 +1,30 @@
+# Normalise line endings across platforms.
+* text=auto eol=lf
+
+# Windows-specific scripts keep CRLF.
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Shell scripts stay LF.
+*.sh text eol=lf
+
+# Treat these as binary (no EOL munging / diffs).
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+
+# Mark generated output so GitHub collapses it in diffs and excludes it from language stats.
+site/**            linguist-generated=true
+manual/**          linguist-generated=true
+reference/**       linguist-generated=true
+projects/**        linguist-generated=true
+cheatsheets/**     linguist-generated=true
+labs/**            linguist-generated=true
+SUMMARY.md         linguist-generated=true
+progress.json      linguist-generated=true

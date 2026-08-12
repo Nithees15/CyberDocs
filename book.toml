@@ -1,0 +1,26 @@
+# Optional: build this repo as an mdBook site (https://rust-lang.github.io/mdBook/).
+# The generated SUMMARY.md is mdBook-compatible.
+#   mdbook serve      # live server at http://localhost:3000
+#   mdbook build      # static HTML in ./book
+# You do NOT need mdBook — the self-contained offline UI in ./site works with no tools.
+
+[book]
+title = "Cybersecurity-Mastery"
+description = "An offline cybersecurity encyclopedia, curriculum, lab manual and reference."
+authors = ["Cybersecurity-Mastery"]
+language = "en"
+src = "."
+
+[output.html]
+default-theme = "navy"
+preferred-dark-theme = "navy"
+git-repository-url = ""
+smart-punctuation = true
+
+[output.html.search]
+enable = true
+limit-results = 40
+
+[output.html.fold]
+enable = true
+level = 1

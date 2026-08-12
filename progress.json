@@ -1,0 +1,161 @@
+{
+  "project": "Cybersecurity-Mastery",
+  "generated": "2026-08-13",
+  "generator": "_meta/generate.py",
+  "totals": {
+    "sections": 16,
+    "chapters": 293,
+    "tools": 89,
+    "platforms": 12,
+    "projects": 100,
+    "cheatsheets": 28,
+    "study_hours": 2677
+  },
+  "phase": "interactive learning app",
+  "model": "each lesson = short Overview + interactive Hands-On Practice (stepper w/ Run/Copy, live terminal, quizzes, progress) + compact Reference; dark green UI; Lab Runner backend for real execution; Tracks + Labs campaign + boss labs",
+  "deep_chapters_authored": 16,
+  "practice_labs_authored": 13,
+  "part_environments": 9,
+  "boss_labs": 6,
+  "cheatsheets_authored": 13,
+  "curated_labs": 10,
+  "sections": [
+    {
+      "id": "00-foundations",
+      "title": "Foundations",
+      "chapters": 25,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "01-networking",
+      "title": "Networking",
+      "chapters": 25,
+      "deep_chapters": 3,
+      "status": "deepening"
+    },
+    {
+      "id": "02-cryptography",
+      "title": "Cryptography",
+      "chapters": 18,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "03-web-security",
+      "title": "Web Security",
+      "chapters": 21,
+      "deep_chapters": 1,
+      "status": "deepening"
+    },
+    {
+      "id": "04-vulnerabilities",
+      "title": "Vulnerabilities",
+      "chapters": 30,
+      "deep_chapters": 7,
+      "status": "deepening"
+    },
+    {
+      "id": "05-platforms",
+      "title": "Platforms",
+      "chapters": 15,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "06-offensive-security",
+      "title": "Offensive Security",
+      "chapters": 24,
+      "deep_chapters": 1,
+      "status": "deepening"
+    },
+    {
+      "id": "07-defensive-security",
+      "title": "Defensive Security",
+      "chapters": 22,
+      "deep_chapters": 2,
+      "status": "deepening"
+    },
+    {
+      "id": "08-malware",
+      "title": "Malware Analysis",
+      "chapters": 19,
+      "deep_chapters": 1,
+      "status": "deepening"
+    },
+    {
+      "id": "09-secure-development",
+      "title": "Secure Development",
+      "chapters": 15,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "10-cloud-security",
+      "title": "Cloud Security",
+      "chapters": 14,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "11-wireless",
+      "title": "Wireless and RF Security",
+      "chapters": 10,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "12-identity",
+      "title": "Identity and Access",
+      "chapters": 11,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "13-digital-forensics",
+      "title": "Digital Forensics and Incident Response",
+      "chapters": 12,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    },
+    {
+      "id": "14-threat-intelligence",
+      "title": "Threat Intelligence and Frameworks",
+      "chapters": 16,
+      "deep_chapters": 1,
+      "status": "deepening"
+    },
+    {
+      "id": "15-compliance",
+      "title": "Governance, Risk and Compliance",
+      "chapters": 16,
+      "deep_chapters": 0,
+      "status": "scaffolded"
+    }
+  ],
+  "deep_dive_chapters": [
+    "active-directory-attacks",
+    "buffer-overflow",
+    "command-injection",
+    "csrf",
+    "dns",
+    "incident-response",
+    "kerberos",
+    "malware-fundamentals",
+    "mitre-attack",
+    "oauth",
+    "rce",
+    "sql-injection",
+    "ssrf",
+    "threat-hunting",
+    "tls",
+    "xss"
+  ],
+  "next_actions": [
+    "Deepen flagship chapters with full hand-authored prose, code and figures.",
+    "Expand curated LABS coverage beyond the initial set.",
+    "Fill cheatsheet command tables per domain.",
+    "Add more tools as needed toward full coverage."
+  ],
+  "resume_instructions": "Re-run `python _meta/generate.py` to regenerate; edit manifests in _meta/ to add topics; run `python _meta/build_site.py` to rebuild the web UI. Deep content is authored directly in the .md files and preserved unless the generator overwrites a scaffolded page."
+}
